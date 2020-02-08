@@ -11,8 +11,6 @@ alphabet = dict.fromkeys(string.ascii_lowercase,0)
 for c in ciphertext:
     if re.match(pattern, c):
         alphabet[c.lower()] += 1
-    else:
-        continue
 
 #Get second most frequently used letter in ciphertext
 index = 0
@@ -26,4 +24,8 @@ shift_amt = index - list(alphabet.keys()).index('e')
 
 for c in ciphertext:
     if re.match(pattern, c):
-        pass
+        plaintext += list(alphabet)[list(alphabet).index(c.lower()) - shift_amt]
+    else:
+        plaintext += c
+
+print(plaintext)
